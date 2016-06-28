@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6466E2291D21FA9E00FE4D92 /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6466E2281D21FA9E00FE4D92 /* Minecraft.ttf */; };
+		64BBD5601D23325C008210CE /* btn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64BBD55F1D23325C008210CE /* btn.wav */; };
 		64C4E1F71D21E24E00D4638A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C4E1F61D21E24E00D4638A /* AppDelegate.swift */; };
 		64C4E1F91D21E24E00D4638A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C4E1F81D21E24E00D4638A /* ViewController.swift */; };
 		64C4E1FC1D21E24E00D4638A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C4E1FA1D21E24E00D4638A /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		6466E2281D21FA9E00FE4D92 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
+		64BBD55F1D23325C008210CE /* btn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btn.wav; sourceTree = "<group>"; };
 		64C4E1F31D21E24E00D4638A /* retro-calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "retro-calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C4E1F61D21E24E00D4638A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64C4E1F81D21E24E00D4638A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				6466E2281D21FA9E00FE4D92 /* Minecraft.ttf */,
+				64BBD55F1D23325C008210CE /* btn.wav */,
 				64C4E1F61D21E24E00D4638A /* AppDelegate.swift */,
 				64C4E1F81D21E24E00D4638A /* ViewController.swift */,
 				64C4E1FA1D21E24E00D4638A /* Main.storyboard */,
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BBD5601D23325C008210CE /* btn.wav in Resources */,
 				64C4E2011D21E24E00D4638A /* LaunchScreen.storyboard in Resources */,
 				64C4E1FE1D21E24E00D4638A /* Assets.xcassets in Resources */,
 				6466E2291D21FA9E00FE4D92 /* Minecraft.ttf in Resources */,
