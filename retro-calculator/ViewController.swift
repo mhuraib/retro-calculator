@@ -9,17 +9,151 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    
+    // Outlets
+    
+    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var equalsButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var subtractButton: UIButton!
+    @IBOutlet weak var multiplyButton: UIButton!
+    @IBOutlet weak var devideButton: UIButton!
+    @IBOutlet weak var zeroButton: UIButton!
+    @IBOutlet weak var oneButton: UIButton!
+    @IBOutlet weak var twoButton: UIButton!
+    @IBOutlet weak var threeButton: UIButton!
+    @IBOutlet weak var fourButton: UIButton!
+    @IBOutlet weak var fiveButton: UIButton!
+    @IBOutlet weak var sixButton: UIButton!
+    @IBOutlet weak var sevenButton: UIButton!
+    @IBOutlet weak var eightButton: UIButton!
+    @IBOutlet weak var nineButton: UIButton!
+    
+    // Properties
+    
+    var buttonValueArray : [UIButton] = []
+    var firstEnteredValue : Double = 0.0
+    var secondEnteredValue : Double = 0.0
+    var result : Double = 0.0
+    var operationButtonPressed : Bool = true
+    var equalButtonPressed : Bool = true
+    var numberPressedAfterEqual : Bool = false
+    var currentOperationButton = UIButton()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        buttonValueArray.append(zeroButton)
+        buttonValueArray.append(oneButton)
+        buttonValueArray.append(twoButton)
+        buttonValueArray.append(threeButton)
+        buttonValueArray.append(fourButton)
+        buttonValueArray.append(fiveButton)
+        buttonValueArray.append(sixButton)
+        buttonValueArray.append(sevenButton)
+        buttonValueArray.append(eightButton)
+        buttonValueArray.append(nineButton)
+        
+        counterLabel.text="0"
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func numberPressed(sender: UIButton) {
+        
+        for x in 0 ..< buttonValueArray.count
+        {
+            if(sender==buttonValueArray[x])
+            {
+                if(operationButtonPressed)
+                {
+                    counterLabel.text = "\(x)"
+                    operationButtonPressed=false
+                }else{
+                counterLabel.text =  counterLabel.text! + "\(x)"
+                }
+            }
+        }
+        if equalButtonPressed
+        {
+            numberPressedAfterEqual = true
+        }else{
+            numberPressedAfterEqual = false
+        }
+    }
+    
+   
+    @IBAction func equalsPressed(sender: UIButton) {
+        
+        if !equalButtonPressed
+        {
+            secondEnteredValue = Double(counterLabel.text!)!
+        }
+        
+        if !numberPressedAfterEqual
+        {
+            if currentOperationButton == multiplyButton
+            {
+                result = multiply(firstEnteredValue, secondValue: secondEnteredValue)
+            
+            }else if currentOperationButton == devideButton
+            {
+                result = devide(firstEnteredValue, secondValue: secondEnteredValue)
+            
+            }else if currentOperationButton == subtractButton
+            {
+                result = subtract(firstEnteredValue, secondValue: secondEnteredValue)
+            
+            }else
+            {
+                result = add(firstEnteredValue, secondValue: secondEnteredValue)
+            }
+        
+            firstEnteredValue = result
+            counterLabel.text = "\(result)"
+        }
+        
+        operationButtonPressed = true
+        equalButtonPressed = true
+       
+        
+    }
 
-
+    @IBAction func operationPressed (sender: UIButton){
+        
+        firstEnteredValue = Double(counterLabel.text!)!
+        currentOperationButton = sender
+        operationButtonPressed = true
+        equalButtonPressed = false
+        
+    }
+    
+    func multiply(firstValue : Double, secondValue : Double)->Double {
+        return firstValue * secondValue
+    }
+    
+    func devide(firstValue : Double, secondValue : Double)->Double {
+        return firstValue / secondValue
+    }
+    
+    func subtract(firstValue : Double, secondValue : Double)->Double {
+        return firstValue - secondValue
+    }
+    
+    func add(firstValue : Double, secondValue : Double)->Double {
+        return firstValue + secondValue
+    }
+   
+    
+    
 }
 
