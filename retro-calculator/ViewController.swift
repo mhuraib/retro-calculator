@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
     
     // Properties
     
+    var btnSound: AVAudioPlayer!
     var buttonValueArray : [UIButton] = []
     var firstEnteredValue : Double = 0.0
     var secondEnteredValue : Double = 0.0
@@ -60,6 +62,16 @@ class ViewController: UIViewController {
         
         counterLabel.text="0"
         
+        let path = NSBundle.mainBundle().pathForResource("btn", ofType: "wav")
+        let soundUrl = NSURL(fileURLWithPath: path!)
+        
+        do {
+            try btnSound = AVAudioPlayer(contentsOfURL: soundUrl)
+            btnSound.prepareToPlay()
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +81,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func numberPressed(sender: UIButton) {
+        
+        playSound()
         
         for x in 0 ..< buttonValueArray.count
         {
@@ -93,6 +107,8 @@ class ViewController: UIViewController {
     
    
     @IBAction func equalsPressed(sender: UIButton) {
+        
+        playSound()
         
         if !equalButtonPressed
         {
@@ -130,6 +146,7 @@ class ViewController: UIViewController {
 
     @IBAction func operationPressed (sender: UIButton){
         
+        playSound()
         firstEnteredValue = Double(counterLabel.text!)!
         currentOperationButton = sender
         operationButtonPressed = true
@@ -151,6 +168,10 @@ class ViewController: UIViewController {
     
     func add(firstValue : Double, secondValue : Double)->Double {
         return firstValue + secondValue
+    }
+    
+    func playSound (){
+        btnSound.play()
     }
    
     
