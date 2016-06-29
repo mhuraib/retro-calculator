@@ -39,8 +39,9 @@ class ViewController: UIViewController {
     var firstEnteredValue : Double = 0.0
     var secondEnteredValue : Double = 0.0
     var result : Double = 0.0
-    var operationButtonPressed : Bool = true
+    var operationButtonPressed : Bool = false
     var equalButtonPressed : Bool = true
+    var numberPressedAfterOperation : Bool = false
     var numberPressedAfterEqual : Bool = false
     var currentOperationButton = UIButton()
     
@@ -90,19 +91,25 @@ class ViewController: UIViewController {
             {
                 if(operationButtonPressed)
                 {
+                    numberPressedAfterOperation = true
                     counterLabel.text = "\(x)"
                     operationButtonPressed=false
                 }else{
                 counterLabel.text =  counterLabel.text! + "\(x)"
+                    numberPressedAfterOperation = false
+                }
+                
+                if equalButtonPressed
+                {
+                    counterLabel.text = "\(x)"
+                    numberPressedAfterEqual = true
+                }else{
+                    numberPressedAfterEqual = false
                 }
             }
         }
-        if equalButtonPressed
-        {
-            numberPressedAfterEqual = true
-        }else{
-            numberPressedAfterEqual = false
-        }
+        
+        
     }
     
    
@@ -117,29 +124,12 @@ class ViewController: UIViewController {
         
         if !numberPressedAfterEqual
         {
-            if currentOperationButton == multiplyButton
-            {
-                result = multiply(firstEnteredValue, secondValue: secondEnteredValue)
-            
-            }else if currentOperationButton == devideButton
-            {
-                result = devide(firstEnteredValue, secondValue: secondEnteredValue)
-            
-            }else if currentOperationButton == subtractButton
-            {
-                result = subtract(firstEnteredValue, secondValue: secondEnteredValue)
-            
-            }else
-            {
-                result = add(firstEnteredValue, secondValue: secondEnteredValue)
-            }
-        
-            firstEnteredValue = result
-            counterLabel.text = "\(result)"
+            calculateResult()
         }
         
-        operationButtonPressed = true
+        operationButtonPressed=false
         equalButtonPressed = true
+        numberPressedAfterOperation = false
        
         
     }
@@ -147,10 +137,17 @@ class ViewController: UIViewController {
     @IBAction func operationPressed (sender: UIButton){
         
         playSound()
+        if numberPressedAfterOperation
+        {
+            secondEnteredValue = Double(counterLabel.text!)!
+            calculateResult()
+        }
+        
         firstEnteredValue = Double(counterLabel.text!)!
         currentOperationButton = sender
         operationButtonPressed = true
         equalButtonPressed = false
+        numberPressedAfterOperation = false
         
     }
     
@@ -172,6 +169,29 @@ class ViewController: UIViewController {
     
     func playSound (){
         btnSound.play()
+    }
+    
+    func calculateResult(){
+        
+        if currentOperationButton == multiplyButton
+        {
+            result = multiply(firstEnteredValue, secondValue: secondEnteredValue)
+            
+        }else if currentOperationButton == devideButton
+        {
+            result = devide(firstEnteredValue, secondValue: secondEnteredValue)
+            
+        }else if currentOperationButton == subtractButton
+        {
+            result = subtract(firstEnteredValue, secondValue: secondEnteredValue)
+            
+        }else
+        {
+            result = add(firstEnteredValue, secondValue: secondEnteredValue)
+        }
+        
+        firstEnteredValue = result
+        counterLabel.text = "\(result)"
     }
    
     
